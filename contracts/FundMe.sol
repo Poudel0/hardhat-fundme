@@ -1,10 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.7;
-// 2. Imports
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "./PriceConverter.sol";
 
-// 3. Interfaces, Libraries, Contracts
+
 error FundMe__NotOwner();
 
 
@@ -28,7 +27,7 @@ contract FundMe {
         _;
     }
 
-    
+
 
     constructor(address priceFeed) {
         s_priceFeed = AggregatorV3Interface(priceFeed);
