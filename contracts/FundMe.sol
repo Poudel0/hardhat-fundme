@@ -34,7 +34,6 @@ contract FundMe {
         i_owner = msg.sender;
     }
 
-    /// @notice Funds our contract based on the ETH/USD price
     function fund() public payable {
         require(
             msg.value.getConversionRate(s_priceFeed) >= MINIMUM_USD,
@@ -63,7 +62,7 @@ contract FundMe {
 
     function cheaperWithdraw() public onlyOwner {
         address[] memory funders = s_funders;
-        // mappings can't be in memory, sorry!
+        
         for (
             uint256 funderIndex = 0;
             funderIndex < funders.length;
@@ -78,10 +77,7 @@ contract FundMe {
         require(success);
     }
 
-    /** @notice Gets the amount that an address has funded
-     *  @param fundingAddress the address of the funder
-     *  @return the amount funded
-     */
+  
     function getAddressToAmountFunded(address fundingAddress)
         public
         view

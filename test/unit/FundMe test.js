@@ -36,8 +36,7 @@ const { developmentChains } = require("../../helper-hardhat-config");
             "You need to spend more ETH!"
           );
         });
-        // we could be even more precise here by making sure exactly $50 works
-        // but this is good enough for now
+
         it("Updates the amount funded data structure", async () => {
           await fundMe.fund({ value: sendValue });
           const response = await fundMe.getAddressToAmountFunded(deployer);
@@ -83,8 +82,7 @@ const { developmentChains } = require("../../helper-hardhat-config");
             endingDeployerBalance.add(gasCost).toString()
           );
         });
-        // this test is overloaded. Ideally we'd split it into multiple tests
-        // but for simplicity we left it as one
+
         it("is allows us to withdraw with multiple funders", async () => {
           // Arrange
           const accounts = await ethers.getSigners();
@@ -101,8 +99,7 @@ const { developmentChains } = require("../../helper-hardhat-config");
 
           // Act
           const transactionResponse = await fundMe.cheaperWithdraw();
-          // Let's comapre gas costs :)
-          // const transactionResponse = await fundMe.withdraw()
+
           const transactionReceipt = await transactionResponse.wait();
           const { gasUsed, effectiveGasPrice } = transactionReceipt;
           const withdrawGasCost = gasUsed.mul(effectiveGasPrice);
